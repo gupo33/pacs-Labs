@@ -1,6 +1,8 @@
 #include "GetPot"
 #include "Parameters.hpp"
 
+//reads parameters from a file through GetPot
+
 Parameters::Parameters(const std::string &filename)
 {
   GetPot file(filename.c_str());

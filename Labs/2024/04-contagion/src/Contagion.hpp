@@ -18,7 +18,9 @@ protected:
   void
   output_results() const;
 
-  const Parameters m_params;
+  void output_position(const std::string & filename) const;
+
+  const Parameters m_params; //convention: m_ means that it is a member of a class
 
   std::vector<Agent> m_agents;
 
