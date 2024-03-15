@@ -1,4 +1,7 @@
 #include "NewtonSolver.hpp"
+#include "GetPot" 
+
+//this is the main, but we want to populate the variables through getpot
 
 // function f 
 double fun(const double &x)
@@ -12,11 +15,18 @@ double dfun(const double &x)
   return 3 *x*x + 5;
 };
 
-int main(int argc, char **argv)
+int main(int argc, char **argv) //argc and argv need to be present
 {
-  const unsigned int max_it = 50;
-  const double tol_res = 1e-8;
-  const double tol_x = 1e-8;
+  GetPot command_line(argc, argv); //parses the arguments
+
+  const std::string filename = command_line.follow("dataGetPot", 2, "-f", "--file");
+  //selects a file name where to look for stuff
+
+  GetPot datafile(filename.c_str());
+
+  const unsigned int max_it = datafile("nmax_it", 100);
+  const double tol_res = datafile("tol_fun", 1e-8);
+  const double tol_x = datafile("tol_x", 1e-8);
 
   // initialize solver
   NewtonSolver solver(fun, dfun, max_it, tol_res, tol_x);

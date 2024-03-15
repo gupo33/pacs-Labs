@@ -14,6 +14,9 @@ double dfun(const double &x)
 
 int main(int argc, char **argv)
 {
+
+  //this parameters should be brought inside a file to be parsed
+
   const unsigned int max_it = 50;
   const double tol_res = 1e-8;
   const double tol_x = 1e-8;

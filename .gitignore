@@ -42,3 +42,7 @@
 
 # swp files from vim
 *.swp
+Labs/2024/03-functional/01-newton/main
+Labs/2024/03-functional/01-newton/mainMuParser
+Labs/2024/03-functional/01-newton/mainGetPot
+Labs/2024/03-functional/01-newton/data.txt

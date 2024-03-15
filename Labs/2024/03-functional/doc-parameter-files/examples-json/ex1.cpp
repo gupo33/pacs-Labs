@@ -5,10 +5,10 @@
 
 #include "json.hpp"
 
-using json = nlohmann::json;
+using json = nlohmann::json; //namespace
 
 int main() {
-  std::ifstream f("data.json");
+  std::ifstream f("data.json"); //open json file
   json data = json::parse(f);
   const double a = data["domain"].value("a", 0.0);
   const double b = data["domain"].value("b", 1.0);
