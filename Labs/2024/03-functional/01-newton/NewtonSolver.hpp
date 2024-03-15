@@ -4,7 +4,7 @@
 #include <cmath>
 #include <functional>
 #include <iostream>
-#include <limits>
+#include <limits> //includes the numeric limits
 
 class NewtonSolver
 {
@@ -28,6 +28,8 @@ public:
     , m_iter(0)
   {}
 
+  //m_ means that the variable is a member of a class, convention
+
   void solve(const double &x0)
   {
     // initial guess
@@ -47,7 +49,7 @@ public:
 
         // Newton update
         m_dx = m_res / m_df_dx;
-        m_x -= m_dx;
+        m_x -= m_dx; //by doing -=, we avoid copying the variable to do the operation
 
         // check convergence on the increment
         if (std::abs(m_dx) < m_tol_x)

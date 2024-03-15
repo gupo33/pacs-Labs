@@ -1,22 +1,32 @@
 #include "NewtonSolver.hpp"
+#include "muparser_fun.hpp" //wrapper that helps us using muparser
+#include "json.hpp" //needed to work with json files
 
-// function f 
-double fun(const double &x)
-{
-  return x*x*x + 5 * x + 3;
-};
+#include <fstream> //allows us to open files
+#include <string> //contains the string datatype
 
-// derivative of f
-double dfun(const double &x)
-{
-  return 3 *x*x + 5;
-};
+using json = nlohmann::json; //namespace
 
 int main(int argc, char **argv)
 {
-  const unsigned int max_it = 50;
-  const double tol_res = 1e-8;
-  const double tol_x = 1e-8;
+
+  std::ifstream f("data.json"); //opens the json file
+  json data = json::parse(f); //json object used for parsing
+
+  //we want to define f and df with muparser
+  //and also pass the parameters through the json file
+
+  const unsigned max_it = data.value("max_it",10);
+  const double tol_res = data.value("tol_res",1e-8);
+  const double tol_x = data.value("tol_x",1e-8);
+
+  std::string funString = data.value("fun","");
+  std::string dfunString = data.value("dfun","");
+
+  //define the functions from the strings
+
+  MuparserFun fun(funString);
+  MuparserFun dfun(dfunString);
 
   // initialize solver
   NewtonSolver solver(fun, dfun, max_it, tol_res, tol_x);

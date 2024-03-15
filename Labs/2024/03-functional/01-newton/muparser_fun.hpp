@@ -9,12 +9,12 @@ public:
   MuparserFun(const MuparserFun &m)
     : m_parser(m.m_parser)
   {
-    m_parser.DefineVar("x", &m_var);
+    m_parser.DefineVar("x", &m_var); //defines the variable we are using
   };
 
   MuparserFun(const std::string &s)
   {
-    try
+    try //this and catch are for exception handling, don't care 
       {
         m_parser.DefineVar("x", &m_var);
         m_parser.SetExpr(s);
@@ -28,9 +28,8 @@ public:
   double
   operator()(const double &x)
   {
-    double y = 0;
-
-    // To complete.
+    m_var = x;
+    double y = m_parser.Eval();
 
     return y;
   };

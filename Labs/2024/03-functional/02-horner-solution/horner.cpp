@@ -71,10 +71,13 @@ evaluate_poly(const std::vector<double> &points,
 
   auto compute = [&a, &method](const double &x) { return method(a, x); };
 
+  //transform method needs a unary operator, so we're going to create one
+
 #ifdef PARALLELEXEC
 #  warning "Using parallel implementation of std::transform"
   std::transform(
     std::execution::par, points.begin(), points.end(), result.begin(), compute);
+    // the std::execution::par policy is what allows us to parallelize the method
 #else
 #  warning "Using sequential implementation of std::transform"
   std::transform(points.begin(), points.end(), result.begin(), compute);
