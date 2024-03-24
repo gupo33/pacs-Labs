@@ -6,7 +6,7 @@
 #include <vector>
 
 template <class T>
-using RowType = std::map<unsigned int, T>;
+using RowType = std::map<unsigned int, T>; //each row is a map
 
 /// Templated class for sparse row-oriented matrix.
 template <class T>
@@ -66,7 +66,7 @@ public:
       std::vector<unsigned int> &row_ptr);
 
 private:
-  std::vector<RowType<T>> m_data;
+  std::vector<RowType<T>> m_data; //matrix is implemented as a vector of maps
   size_t m_nnz; ///< Number of nonzero elements.
   size_t m_m;   ///< Number of nonempty columns.
 };

@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
   A.resize(n);
 
   // populate A
-  for (unsigned int i = 0; i < n; ++i)
+  for (unsigned int i = 0; i < n; ++i) //by using vectors and maps, we can use [.][.] to access the elements, like in a regular matrix
     {
       if (i > 0)
         A[i][i - 1] = -1;
@@ -39,6 +39,8 @@ int main(int argc, char **argv) {
   std::cout << "Stream operator:" << std::endl;
   std::cout << A;
   std::cout << std::endl;
+
+  return 0;
 
   std::vector<double>       val;
   std::vector<unsigned int> col_ind, row_ptr;

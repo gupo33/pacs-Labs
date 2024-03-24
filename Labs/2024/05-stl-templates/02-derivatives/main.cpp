@@ -26,5 +26,15 @@ int main(int argc, char **argv) {
     const auto y = df4(1.0);
   };
 
+  const auto test_Naive = [&]() {
+    const auto y = Naive{f,h,4}(1.0);
+  };
+
+  const auto test_template_v1 = [&]() {
+    const auto y = templateForward<4>{f,h}(1.0);
+  };
+
   std::cout << "Test hard coded: " << timeit(test_manual, N) << "[ms]\n";
+  std::cout << "Test naive: " << timeit(test_Naive, N) << "[ms]\n";
+  std::cout << "Test template forward: " << timeit(test_template_v1, N) << "[ms]\n";
 }
